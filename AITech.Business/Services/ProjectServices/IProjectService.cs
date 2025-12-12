@@ -1,5 +1,5 @@
 ﻿using AITech.Business.Services.GenericServices;
-using AITech.DTO.ProjectDtos;
+using AITech.DTO.DTOs.ProjectDtos;
 using AITech.Entities.Entities;
 using System;
 using System.Collections.Generic;

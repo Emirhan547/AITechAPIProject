@@ -1,5 +1,5 @@
 ﻿using AITech.Business.Services.CategoryServices;
-using AITech.DTO.CategoryDtos;
+using AITech.DTO.DTOs.CategoryDtos;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 

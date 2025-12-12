@@ -1,5 +1,5 @@
 ﻿using AITech.Business.Services.ProjectServices;
-using AITech.DTO.ProjectDtos;
+using AITech.DTO.DTOs.ProjectDtos;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 

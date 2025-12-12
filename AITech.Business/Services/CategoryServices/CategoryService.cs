@@ -1,6 +1,6 @@
 ﻿using AITech.DataAccess.Repositories.CategoryRepositories;
 using AITech.DataAccess.UnitOfWorks;
-using AITech.DTO.CategoryDtos;
+using AITech.DTO.DTOs.CategoryDtos;
 using AITech.Entities.Entities;
 using Mapster;
 

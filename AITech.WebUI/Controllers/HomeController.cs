@@ -1,21 +1,22 @@
 using AITech.WebUI.Models;
+using AITech.WebUI.Services.OpenAIServices;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
 namespace AITech.WebUI.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController(IOpenaiService _openaiService) : Controller
     {
-        private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public async Task<IActionResult>Index(string prompt)
         {
-            _logger = logger;
-        }
-
-        public IActionResult Index()
-        {
+            var response=await _openaiService.GetGeminiDataAsync(prompt);
+            if(string.IsNullOrEmpty(prompt))
+            {
+                ViewBag.Response = response;
+            }
             return View();
+
         }
 
         public IActionResult Privacy()

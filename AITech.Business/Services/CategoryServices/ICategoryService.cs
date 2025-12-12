@@ -1,5 +1,5 @@
 ﻿using AITech.Business.Services.GenericServices;
-using AITech.DTO.CategoryDtos;
+using AITech.DTO.DTOs.CategoryDtos;
 
 namespace AITech.Business.Services.CategoryServices
 {
