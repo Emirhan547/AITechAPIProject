@@ -22,8 +22,12 @@ namespace AITech.Business.Services.FeatureServices
 
         public async Task TDeleteAsync(int id)
         {
-            var values=await _featureRepository.GetByIdAsync(id);
-            _featureRepository.Delete(values);
+            var feature = await _featureRepository.GetByIdAsync(id);
+            if (feature is null)
+            {
+                throw new Exception(" Feature Bulunamadı");
+            }
+            _featureRepository.Delete(feature);
             await _unitOfWork.SaveChangesAsync();
         }
 
@@ -35,8 +39,12 @@ namespace AITech.Business.Services.FeatureServices
 
         public async Task<ResultFeatureDto> TGetByIdAsync(int id)
         {
-            var values=await _featureRepository.GetByIdAsync(id);
-            return values.Adapt<ResultFeatureDto>();
+            var feature = await _featureRepository.GetByIdAsync(id);
+            if (feature is null)
+            {
+                throw new Exception(" Feature Bulunamadı");
+            }
+            return feature.Adapt<ResultFeatureDto>();
         }
 
         public async Task TUpdateAsync(UpdateFeatureDto updateDto)

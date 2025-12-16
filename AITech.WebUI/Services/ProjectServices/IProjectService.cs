@@ -1,13 +1,10 @@
 ﻿using AITech.WebUI.DTOs.ProjectDtos;
+using AITech.WebUI.Services.GenericServices;
 
 namespace AITech.WebUI.Services.ProjectServices
 {
-    public interface IProjectService
+    public interface IProjectService:IGenericService<ResultProjectDto,CreateProjectDto,UpdateProjectDto>
     {
-        Task<List<ResultProjectDto>> GetAllAsync();
-        Task<UpdateProjectDto> GetByIdAsync(int id);
-        Task CreateAsync(CreateProjectDto createProjectDto);
-        Task UpdateAsync(UpdateProjectDto updateProjectDto);
-        Task DeleteAsync(int id);
+
     }
 }

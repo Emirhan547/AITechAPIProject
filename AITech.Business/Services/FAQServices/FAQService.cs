@@ -23,8 +23,12 @@ namespace AITech.Business.Services.IFAQServices
 
         public async Task TDeleteAsync(int id)
         {
-            var values=await _fAQRepository.GetByIdAsync(id);
-             _fAQRepository.Delete(values);
+            var faqs=await _fAQRepository.GetByIdAsync(id);
+            if (faqs is null)
+            {
+                throw new Exception(" Soru Cevap Bulunamadı");
+            }
+            _fAQRepository.Delete(faqs);
             await _unitOfWork.SaveChangesAsync();
         }
 
@@ -36,8 +40,12 @@ namespace AITech.Business.Services.IFAQServices
 
         public async Task<ResultFAQDto> TGetByIdAsync(int id)
         {
-            var values = await _fAQRepository.GetByIdAsync(id);
-            return values.Adapt<ResultFAQDto>();
+            var faqs = await _fAQRepository.GetByIdAsync(id);
+            if (faqs is null)
+            {
+                throw new Exception(" Soru Cevap Bulunamadı");
+            }
+            return faqs.Adapt<ResultFAQDto>();
         }
 
         public async Task TUpdateAsync(UpdateFAQDto updateDto)

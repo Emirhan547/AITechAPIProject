@@ -1,4 +1,6 @@
 ﻿using AITech.WebUI.DTOs.BannerDtos;
+using AITech.WebUI.DTOs.CategoryDtos;
+using AITech.WebUI.Services.GenericServices;
 
 namespace AITech.WebUI.Services.BannerServices
 {
@@ -45,5 +47,7 @@ namespace AITech.WebUI.Services.BannerServices
         {
             await _client.PatchAsync("banners/makePassive/" + id, null);
         }
+
+        
     }
 }

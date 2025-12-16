@@ -22,8 +22,12 @@ namespace AITech.Business.Services.TestimonialServices
 
         public async Task TDeleteAsync(int id)
         {
-            var values=await _testimonialRepository.GetByIdAsync(id);
-             _testimonialRepository.Delete(values);
+            var testimonial = await _testimonialRepository.GetByIdAsync(id);
+            if (testimonial is null)
+            {
+                new Exception("Testimonial not found");
+            }
+            _testimonialRepository.Delete(testimonial);
             await _unitOfWork.SaveChangesAsync();
         }
 
@@ -35,8 +39,12 @@ namespace AITech.Business.Services.TestimonialServices
 
         public async Task<ResultTestimonialDto> TGetByIdAsync(int id)
         {
-            var values = await _testimonialRepository.GetByIdAsync(id);
-            return values.Adapt<ResultTestimonialDto>();
+            var testimonial = await _testimonialRepository.GetByIdAsync(id);
+            if (testimonial is null)
+            {
+                new Exception("Testimonial not found");
+            }
+            return testimonial.Adapt<ResultTestimonialDto>();
         }
 
         public async Task TUpdateAsync(UpdateTestimonialDto updateDto)

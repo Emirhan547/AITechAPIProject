@@ -23,6 +23,10 @@ namespace AITech.Business.Services.BannerServices
         public async Task TDeleteAsync(int id)
         {
            var banner= await _bannerRepository.GetByIdAsync(id);
+            if (banner is null)
+            {
+                throw new Exception("Banner Bulunamadı");
+            }
             _bannerRepository.Delete(banner);
             await _unitOfWork.SaveChangesAsync();
         }
@@ -36,12 +40,20 @@ namespace AITech.Business.Services.BannerServices
         public Task<ResultBannerDto> TGetByIdAsync(int id)
         {
             var banner= _bannerRepository.GetByIdAsync(id);
+            if (banner is null)
+            {
+                throw new Exception(" Banner Bulunamadı");
+            }
             return banner.Adapt<Task<ResultBannerDto>>();
         }
 
         public async Task TMakeActiveAsync(int id)
         {
             var banner = await _bannerRepository.GetByIdAsync(id);
+            if (banner is null)
+            {
+                throw new Exception(" Banner Bulunamadı");
+            }
             await _bannerRepository.MakeActiveAsync(banner);
             await _unitOfWork.SaveChangesAsync();
         }

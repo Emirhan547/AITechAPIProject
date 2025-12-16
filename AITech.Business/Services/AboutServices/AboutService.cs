@@ -24,6 +24,10 @@ namespace AITech.Business.Services.AboutServices
         public async Task TDeleteAsync(int id)
         {
             var about=await _aboutRepository.GetByIdAsync(id);
+            if (about is null)
+            {
+                throw new Exception(" Hakkında Bulunamadı");
+            }
             _aboutRepository.Delete(about);
             await _unitOfWork.SaveChangesAsync();
         }
@@ -37,6 +41,10 @@ namespace AITech.Business.Services.AboutServices
         public async Task<ResultAboutDto> TGetByIdAsync(int id)
         {
             var abouts=await _aboutRepository.GetByIdAsync(id);
+            if (abouts is null)
+            {
+                throw new Exception(" Hakkında Bulunamadı");
+            }
             return abouts.Adapt<ResultAboutDto>();
         }
 

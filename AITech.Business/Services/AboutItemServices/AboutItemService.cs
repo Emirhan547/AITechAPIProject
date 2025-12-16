@@ -22,8 +22,12 @@ namespace AITech.Business.Services.AboutItemServices
 
         public async Task TDeleteAsync(int id)
         {
-            var values=await _aboutItemRepository.GetByIdAsync(id);
-             _aboutItemRepository.Delete(values);
+            var aboutItem=await _aboutItemRepository.GetByIdAsync(id);
+            if (aboutItem is null)
+            {
+                throw new Exception(" Hakkında Bulunamadı");
+            }
+            _aboutItemRepository.Delete(aboutItem);
             await _unitOfWork.SaveChangesAsync();
         }
 
@@ -35,8 +39,12 @@ namespace AITech.Business.Services.AboutItemServices
 
         public async Task<ResultAboutItemDto> TGetByIdAsync(int id)
         {
-            var values = await _aboutItemRepository.GetByIdAsync(id);
-            return values.Adapt<ResultAboutItemDto>();
+            var aboutItem = await _aboutItemRepository.GetByIdAsync(id);
+            if (aboutItem is null)
+            {
+                throw new Exception(" Hakkında Bulunamadı");
+            }
+            return aboutItem.Adapt<ResultAboutItemDto>();
         }
 
         public async Task TUpdateAsync(UpdateAboutItemDto updateDto)

@@ -1,15 +1,12 @@
 ﻿using AITech.WebUI.DTOs.BannerDtos;
+using AITech.WebUI.Services.GenericServices;
 
 namespace AITech.WebUI.Services.BannerServices
 {
-    public interface IBannerService
+    public interface IBannerService:IGenericService<ResultBannerDto,CreateBannerDto,UpdateBannerDto>
     {
         Task MakeActiveAsync(int id);
         Task MakePassiveAsync(int id);
-        Task<List<ResultBannerDto>> GetAllAsync();
-        Task<UpdateBannerDto> GetByIdAsync(int id);
-        Task CreateAsync(CreateBannerDto createBannerDto);
-        Task UpdateAsync(UpdateBannerDto updateBannerDto);
-        Task DeleteAsync(int id);
+
     }
 }

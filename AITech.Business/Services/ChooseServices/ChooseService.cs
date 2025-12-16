@@ -6,6 +6,7 @@ using Mapster;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -22,8 +23,12 @@ namespace AITech.Business.Services.ChooseServices
 
         public async Task TDeleteAsync(int id)
         {
-           var values=await _chooseRepository.GetByIdAsync(id);
-            _chooseRepository.Delete(values);
+           var choose=await _chooseRepository.GetByIdAsync(id);
+            if (choose is null)
+            {
+                throw new Exception(" Choose Bulunamadı");
+            }
+            _chooseRepository.Delete(choose);
             await _unitOfWork.SaveChangesAsync();
         }
 
@@ -35,8 +40,12 @@ namespace AITech.Business.Services.ChooseServices
 
         public async Task<ResultChooseDto> TGetByIdAsync(int id)
         {
-            var values=await _chooseRepository.GetByIdAsync(id);
-            return values.Adapt<ResultChooseDto>();
+            var choose = await _chooseRepository.GetByIdAsync(id);
+            if (choose is null)
+            {
+                throw new Exception(" Choose Bulunamadı");
+            }
+            return choose.Adapt<ResultChooseDto>();
         }
 
         public async Task TUpdateAsync(UpdateChooseDto updateDto)

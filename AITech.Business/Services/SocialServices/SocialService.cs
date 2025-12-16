@@ -22,8 +22,12 @@ namespace AITech.Business.Services.SocialServices
 
         public async Task TDeleteAsync(int id)
         {
-            var values = await _socialRepository.GetByIdAsync(id);
-             _socialRepository.Delete(values);
+            var social = await _socialRepository.GetByIdAsync(id);
+            if (social is null)
+            {
+                 new Exception("Social not found");
+            }
+            _socialRepository.Delete(social);
             await _unitOfWork.SaveChangesAsync();
 
         }
@@ -36,8 +40,12 @@ namespace AITech.Business.Services.SocialServices
 
         public async Task<ResultSocialDto> TGetByIdAsync(int id)
         {
-            var values=await _socialRepository.GetByIdAsync(id);
-            return values.Adapt<ResultSocialDto>();
+            var social = await _socialRepository.GetByIdAsync(id);
+            if (social is null)
+            {
+                new Exception("Social not found");
+            }
+            return social.Adapt<ResultSocialDto>();
         }
 
         public async Task TUpdateAsync(UpdateSocialDto updateDto)
