@@ -6,6 +6,6 @@ using System.Threading.Tasks;
 
 namespace AITech.DTO.DTOs.AboutDtos
 {
-    public record UpdateAboutDto(int Id,string? Title, string? ImageUrl);
+    public record UpdateAboutDto(int Id,string? Title,string? Description, string? ImageUrl);
 
 }

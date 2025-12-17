@@ -1,0 +1,65 @@
+﻿@model AITech.WebUI.DTOs.ChooseDtos.UpdateChooseDto
+@{
+    ViewData["Title"] = "Update Choose";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">Why Choose Us – Güncelle</h3>
+    </div>
+
+    <form method="post">
+        <div class="card-body">
+
+            <input type="hidden" asp-for="Id" />
+
+            <div class="form-group">
+                <label>Başlık</label>
+                <input asp-for="Title" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label>Açıklama</label>
+                <textarea asp-for="Description"
+                          class="form-control"
+                          rows="3"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Madde 1</label>
+                <input asp-for="Item1" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label>Madde 2</label>
+                <input asp-for="Item2" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label>Madde 3</label>
+                <input asp-for="Item3" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label>Görsel URL</label>
+                <input asp-for="ImageUrl" class="form-control" />
+            </div>
+
+            @if (!string.IsNullOrEmpty(Model.ImageUrl))
+            {
+                <div class="form-group">
+                    <label>Mevcut Görsel</label><br />
+                    <img src="@Model.ImageUrl"
+                         style="height:90px;border-radius:10px" />
+                </div>
+            }
+
+        </div>
+
+        <div class="card-footer">
+            <button type="submit" class="btn btn-info">Güncelle</button>
+            <a href="/Admin/Choose" class="btn btn-secondary">İptal</a>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,59 @@
+﻿@model List<AITech.WebUI.DTOs.SocialDtos.ResultSocialDto>
+@{
+    ViewData["Title"] = "Social Media";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    int count = 0;
+}
+
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">Sosyal Medya Hesapları</h3>
+        <div class="card-tools">
+            <a href="/Admin/Social/CreateSocial" class="btn btn-primary btn-sm">
+                Yeni Sosyal Medya
+            </a>
+        </div>
+    </div>
+
+    <div class="card-body p-0">
+        <table class="table table-bordered table-striped mb-0">
+            <thead>
+                <tr>
+                    <th style="width:40px">#</th>
+                    <th>İkon</th>
+                    <th>Ad</th>
+                    <th>URL</th>
+                    <th style="width:160px">İşlemler</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    count++;
+                    <tr>
+                        <td>@count</td>
+                        <td>
+                            <i class="@item.Icon fa-lg"></i>
+                        </td>
+                        <td>@item.Name</td>
+                        <td>
+                            <a href="@item.Url" target="_blank">
+                                @item.Url
+                            </a>
+                        </td>
+                        <td>
+                            <a href="/Admin/Social/UpdateSocial/@item.Id"
+                               class="btn btn-info btn-sm">
+                                Güncelle
+                            </a>
+                            <a href="/Admin/Social/DeleteSocial/@item.Id"
+                               class="btn btn-danger btn-sm">
+                                Sil
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

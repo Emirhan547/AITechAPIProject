@@ -1,0 +1,43 @@
+﻿@using AITech.WebUI.DTOs.AboutItems
+@model UpdateAboutItemDto
+@{
+    ViewData["Title"] = "Update About Item";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="card card-outline card-info">
+    <div class="card-header">
+        <h3 class="card-title">
+            <i class="fas fa-edit mr-1"></i> Hakkımızda Maddesi Güncelle
+        </h3>
+    </div>
+
+    <form method="post">
+        <div class="card-body">
+
+            <input type="hidden" asp-for="Id" />
+
+            <div class="form-group">
+                <label>Başlık</label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">
+                            <i class="fas fa-check"></i>
+                        </span>
+                    </div>
+                    <input asp-for="Title" class="form-control" />
+                </div>
+            </div>
+
+        </div>
+
+        <div class="card-footer">
+            <button type="submit" class="btn btn-info">
+                <i class="fas fa-sync-alt"></i> Güncelle
+            </button>
+            <a href="/Admin/AboutItem" class="btn btn-secondary">
+                <i class="fas fa-arrow-left"></i> İptal
+            </a>
+        </div>
+    </form>
+</div>

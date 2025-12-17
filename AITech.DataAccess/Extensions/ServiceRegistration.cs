@@ -23,6 +23,7 @@ namespace AITech.DataAccess.Extensions
         public static void AddDataAccessServices(this IServiceCollection services)
         {
             services.AddScoped<ICategoryRepository, CategoryRepository>();
+            services.AddScoped<IBannerRepository, BannerRepository>();
             services.AddScoped<IProjectRepository, ProjectRepository>();
             services.AddScoped<IAboutRepository, AboutRepository>();
             services.AddScoped<IAboutItemRepository, AboutItemRepository>();

@@ -1,0 +1,14 @@
+﻿@using AITech.WebUI.DTOs.AboutItems
+@model List<ResultAboutItemDto>
+
+<div class="row g-3">
+    @foreach (var item in Model)
+    {
+        <div class="col-sm-6">
+            <h6 class="mb-0">
+                <i class="fa fa-check text-primary me-2"></i>
+                @item.Title
+            </h6>
+        </div>
+    }
+</div>

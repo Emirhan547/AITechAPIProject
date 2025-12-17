@@ -5,7 +5,6 @@ using AITech.WebUI.Services.CategoryServices;
 using AITech.WebUI.Services.ChooseServices;
 using AITech.WebUI.Services.FAQsServices;
 using AITech.WebUI.Services.FeatureServices;
-using AITech.WebUI.Services.OpenAIServices;
 using AITech.WebUI.Services.ProjectServices;
 using AITech.WebUI.Services.SocialServices;
 using AITech.WebUI.Services.TestimonialServices;

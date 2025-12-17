@@ -1,0 +1,42 @@
+﻿@model AITech.WebUI.DTOs.SocialDtos.UpdateSocialDto
+@{
+    ViewData["Title"] = "Update Social";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">Sosyal Medya Güncelle</h3>
+    </div>
+
+    <form method="post">
+        <div class="card-body">
+
+            <input type="hidden" asp-for="Id" />
+
+            <div class="form-group">
+                <label>Sosyal Medya Adı</label>
+                <input asp-for="Name"
+                       class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label>İkon (FontAwesome)</label>
+                <input asp-for="Icon"
+                       class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label>URL</label>
+                <input asp-for="Url"
+                       class="form-control" />
+            </div>
+
+        </div>
+
+        <div class="card-footer">
+            <button type="submit" class="btn btn-info">Güncelle</button>
+            <a href="/Admin/Social" class="btn btn-secondary">İptal</a>
+        </div>
+    </form>
+</div>

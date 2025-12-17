@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace AITech.WebUI.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class AboutItemController(IAboutItemService _aboutItem): Controller
     {
         public async Task<IActionResult> Index()

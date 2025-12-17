@@ -1,0 +1,36 @@
+﻿@using AITech.WebUI.DTOs.ProjectDtos
+@model List<ResultProjectDto>
+
+<div class="container-fluid bg-light py-5">
+    <div class="container py-5">
+
+        <div class="mx-auto text-center mb-5" style="max-width: 500px;">
+            <div class="btn btn-sm border rounded-pill text-primary px-3 mb-3">
+                Case Study
+            </div>
+            <h1 class="mb-4">Explore Our Recent AI Case Studies</h1>
+        </div>
+
+        <div class="row g-4">
+            @foreach (var project in Model)
+            {
+                <div class="col-lg-4">
+                    <div class="case-item position-relative overflow-hidden rounded mb-2">
+                        <img class="img-fluid" src="@project.ImageUrl" alt="">
+
+                        <a class="case-overlay text-decoration-none" href="#">
+                            <small>@project.Category.Name</small>
+                            <h5 class="lh-base text-white mb-3">
+                                @project.Title
+                            </h5>
+                            <span class="btn btn-square btn-primary">
+                                <i class="fa fa-arrow-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            }
+        </div>
+
+    </div>
+</div>

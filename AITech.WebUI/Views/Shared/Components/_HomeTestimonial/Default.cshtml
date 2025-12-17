@@ -1,0 +1,48 @@
+﻿@using AITech.WebUI.DTOs.TestimonialDtos
+@model List<ResultTestimonialDto>
+
+<div class="container-xxl py-5">
+    <div class="container py-5">
+        <div class="row g-5">
+
+            <!-- LEFT TEXT -->
+            <div class="col-lg-5">
+                <div class="btn btn-sm border rounded-pill text-primary px-3 mb-3">
+                    Testimonial
+                </div>
+                <h1 class="mb-4">What Say Our Clients!</h1>
+                <p class="mb-4">
+                    Tempor erat elitr rebum at clita. Diam dolor diam ipsum et tempor sit.
+                </p>
+            </div>
+
+            <!-- RIGHT CAROUSEL -->
+            <div class="col-lg-7">
+                <div class="owl-carousel testimonial-carousel border-start border-primary">
+                    @foreach (var item in Model)
+                    {
+                        <div class="testimonial-item ps-5">
+                            <i class="fa fa-quote-left fa-2x text-primary mb-3"></i>
+
+                            <p class="fs-4">
+                                @item.Comment
+                            </p>
+
+                            <div class="d-flex align-items-center">
+                                <img class="img-fluid flex-shrink-0 rounded-circle"
+                                     src="@item.ImageUrl"
+                                     style="width:60px;height:60px;" />
+
+                                <div class="ps-3">
+                                    <h5 class="mb-1">@item.Name</h5>
+                                    <span>@item.Title</span>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

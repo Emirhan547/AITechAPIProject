@@ -1,24 +1,38 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_UILayout.cshtml";
 }
 
-<form method="post">
+
+    <!-- Hero Start -->
+    @await Component.InvokeAsync("_HomeHero")
+    <!-- Hero End -->
+    <!-- Full Screen Search Start -->
+    <!-- Full Screen Search End -->
+    <!-- About Start -->
+    @await Component.InvokeAsync("_HomeAbout")
 
 
-    <label>Prompt Girin:</label>
-    <input type="text" name="prompt" class="form-control" required />
-    <br />
-    <button class="btn btn-primary">Gönder</button>
-</form>
-
-
-@if (ViewBag.response != null)
-{
-    <div class="alert alert-info">
-        <strong>Gelen Yanıt:</strong>
-        <br />
-        <p>
-            @ViewBag.response
-        </p>
-    </div>
-}
+@await Component.InvokeAsync("_HomeAboutItem")
+    <!-- About End -->
+    <!-- Service Start -->
+    @await Component.InvokeAsync("_HomeService")
+    <!-- Service End -->
+    <!-- Feature Start -->
+    @await Component.InvokeAsync("_HomeFeature")
+    <!-- Feature End -->
+    <!-- Case Start -->
+    @await Component.InvokeAsync("_HomeCase")
+    <!-- Case End -->
+    <!-- FAQs Start -->
+    @await Component.InvokeAsync("_HomeFaq")
+    <!-- FAQs Start -->
+    <!-- Team Start -->
+    @await Component.InvokeAsync("_HomeTeam")
+    <!-- Team End -->
+    @await Component.InvokeAsync("_HomeTestimonial")
+    <!-- Testimonial End -->
+    <!-- Newsletter Start -->
+    @await Component.InvokeAsync("_HomeNewsletter")
+    <!-- Newsletter End -->

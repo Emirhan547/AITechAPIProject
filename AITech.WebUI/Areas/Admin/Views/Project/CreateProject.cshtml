@@ -1,27 +1,47 @@
 ﻿@model CreateProjectDto
 @{
-    ViewData["Title"] = "CreateProject";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Create Project";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h1>Yeni Proje Oluştur</h1>
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">Yeni Proje Ekle</h3>
+    </div>
 
-<form method="post">
+    <form method="post">
+        <div class="card-body">
 
-    <label>Başlık</label>
-    <input type="text" asp-for="Title" class="form-control" />
-    <span class="text-danger" asp-validation-for="Title"></span>
-    <br />
-    <label>Görsel Url</label>
-    <input type="text" asp-for="ImageUrl" class="form-control" />
-    <span class="text-danger" asp-validation-for="ImageUrl"></span>
-    <br />
-    <label>Kategori</label>
-    <select type="text" asp-for="CategoryId" class="form-control" asp-items="@ViewBag.categories">
-        <option selected>Kategori Seçiniz</option>
+            <div class="form-group">
+                <label>Proje Başlığı</label>
+                <input asp-for="Title"
+                       class="form-control"
+                       placeholder="Proje başlığı giriniz" />
+            </div>
 
-    </select>
-    <span class="text-danger" asp-validation-for="CategoryId"></span>
-    <br />
-    <button class="btn btn-primary">Kaydet</button>
-</form>
+            <div class="form-group">
+                <label>Görsel URL</label>
+                <input asp-for="ImageUrl"
+                       class="form-control"
+                       placeholder="https://..." />
+            </div>
+
+            <div class="form-group">
+                <label>Kategori</label>
+                <select asp-for="CategoryId"
+                        asp-items="ViewBag.Categories"
+                        class="form-control">
+                    <option value="">Kategori Seçiniz</option>
+                </select>
+
+
+            </div>
+
+        </div>
+
+        <div class="card-footer">
+            <button type="submit" class="btn btn-success">Kaydet</button>
+            <a href="/Admin/Project" class="btn btn-secondary">İptal</a>
+        </div>
+    </form>
+</div>

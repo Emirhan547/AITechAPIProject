@@ -1,16 +1,43 @@
-﻿@model UpdateCategoryDto
+﻿@model AITech.WebUI.DTOs.CategoryDtos.UpdateCategoryDto
 @{
-    ViewData["Title"] = "UpdateCategory";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Update Category";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h3> Kategori Güncelle</h3>
+<div class="card card-outline card-info">
+    <div class="card-header">
+        <h3 class="card-title">
+            <i class="fas fa-edit mr-1"></i> Kategori Güncelle
+        </h3>
+    </div>
 
-<form method="post">
-    <input type="hidden"asp-for="Id"/>
-    <label>Kategori Adı</label>
-    <input asp-for="Name" class="form-control" />
-    <br />
-    <button class="btn btn-primary">Güncelle</button>
-</form>
+    <form method="post">
+        <div class="card-body">
 
+            <input type="hidden" asp-for="Id" />
+
+            <div class="form-group">
+                <label>Kategori Adı</label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">
+                            <i class="fas fa-tag"></i>
+                        </span>
+                    </div>
+                    <input asp-for="Name"
+                           class="form-control" />
+                </div>
+            </div>
+
+        </div>
+
+        <div class="card-footer">
+            <button type="submit" class="btn btn-info">
+                <i class="fas fa-sync-alt"></i> Güncelle
+            </button>
+            <a href="/Admin/Category" class="btn btn-secondary">
+                <i class="fas fa-arrow-left"></i> İptal
+            </a>
+        </div>
+    </form>
+</div>

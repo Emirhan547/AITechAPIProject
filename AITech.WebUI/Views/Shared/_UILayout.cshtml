@@ -1,63 +1,28 @@
-﻿
-@{
+﻿@{
     Layout = null;
 }
 
 <!DOCTYPE html>
 <html lang="en">
-
-    @await Component.InvokeAsync("_UILayoutHead")
+@await Component.InvokeAsync("_UILayoutHead")
 
 <body>
-    <!-- Spinner Start -->
-    <div id="spinner"
-         class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-        <div class="spinner-grow text-primary" style="width: 3rem; height: 3rem;" role="status">
-            <span class="sr-only">Loading...</span>
-        </div>
-    </div>
-    <!-- Spinner End -->
-    <!-- Navbar Start -->
+   
+    <!-- Navbar -->
     @await Component.InvokeAsync("_UILayoutNavbar")
-    <!-- Navbar End -->
-    <!-- Hero Start -->
-    @await Component.InvokeAsync("_UILayoutHero")
-    <!-- Hero End -->
-    <!-- Full Screen Search Start -->
 
-    <!-- Full Screen Search End -->
-    <!-- About Start -->
-    @await Component.InvokeAsync("_UILayoutAbout")
-    <!-- About End -->
-    <!-- Service Start -->
-    @await Component.InvokeAsync("_UILayoutService")
-    <!-- Service End -->
-    <!-- Feature Start -->
-    @await Component.InvokeAsync("_UILayoutFeature")
-    <!-- Feature End -->
-    <!-- Case Start -->
+    <!-- Ana İçerik -->
+    @RenderBody()
 
-    <!-- Case End -->
-    <!-- FAQs Start -->
-    @await Component.InvokeAsync("_UILayoutFaq")
-    <!-- FAQs Start -->
-    <!-- Team Start -->
-    @await Component.InvokeAsync("_UILayoutTeam")
-    <!-- Team End -->
-    <!-- Testimonial Start -->
-    @await Component.InvokeAsync("_UILayoutTestimonial")
-    <!-- Testimonial End -->
-    <!-- Newsletter Start -->
-    @await Component.InvokeAsync("_UILayoutNewsletter")
-    <!-- Newsletter End -->
-    <!-- Footer Start -->
+    <!-- Footer -->
+    @await Component.InvokeAsync("_UILayoutFooter")
 
-    <!-- Footer End -->
     <!-- Back to Top -->
     <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top pt-2"><i class="bi bi-arrow-up"></i></a>
 
+    <!-- Scripts -->
     @await Component.InvokeAsync("_UILayoutScripts")
 
-</body>
 
+</body>
 </html>

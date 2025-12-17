@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 
 namespace AITech.WebUI.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class FeatureController(IFeatureService _featureService) : Controller
     {
         public async Task<IActionResult> Index()
@@ -12,7 +13,7 @@ namespace AITech.WebUI.Areas.Admin.Controllers
             var features=await _featureService.GetAllAsync();
             return View(features);
         }
-        public IActionResult CreateFeatures()
+        public IActionResult CreateFeature()
         {
             return View();
         }

@@ -6,5 +6,5 @@ using System.Threading.Tasks;
 
 namespace AITech.DTO.DTOs.AboutDtos
 {
-    public record CreateAboutDto(string? Title, string? ImageUrl);
+    public record CreateAboutDto(string? Title,string? Description, string? ImageUrl);
 }
