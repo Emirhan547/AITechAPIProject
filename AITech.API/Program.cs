@@ -1,4 +1,3 @@
-
 using AITech.Business.Extensions;
 using AITech.DataAccess.Context;
 using AITech.DataAccess.Extensions;
@@ -7,26 +6,40 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
+// Mevcut servisler
 builder.Services.AddDataAccessServices();
 builder.Services.AddBusinessServices();
+
+// HttpClient ekleyin (AI Assistant için gerekli)
+builder.Services.AddHttpClient();
 
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("SqlConnection"));
-
     options.AddInterceptors(new AuditDbContextInterceptor());
 });
 
+// CORS ekleyin (WebUI ile iletiþim için)
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowWebUI", policy =>
+    {
+        policy.WithOrigins(
+            "https://localhost:7172",
+            "http://localhost:5043",
+            "https://localhost:7149"  // API'nin kendi URL'si
+        )
+        .AllowAnyHeader()
+        .AllowAnyMethod();
+    });
+});
+
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -35,8 +48,10 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseAuthorization();
+// CORS'u kullan (Authorization'dan ÖNCE!)
+app.UseCors("AllowWebUI");
 
+app.UseAuthorization();
 app.MapControllers();
 
 app.Run();

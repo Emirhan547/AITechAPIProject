@@ -1,4 +1,5 @@
 ﻿using AITech.Entities.Entities;
+using AITech.Entity.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -22,6 +23,7 @@ namespace AITech.DataAccess.Context
         public DbSet<Feature> Features { get; set; }
         public DbSet<Project> Projects { get; set; }
         public DbSet<Social> Socials { get; set; }
+        public DbSet<Team> Teams { get; set; }
         public DbSet<Testimonial> Testimonials { get; set; }
     }
 }

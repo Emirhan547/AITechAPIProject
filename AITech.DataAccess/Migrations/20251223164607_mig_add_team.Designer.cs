@@ -4,6 +4,7 @@ using AITech.DataAccess.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AITech.DataAccess.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251223164607_mig_add_team")]
+    partial class mig_add_team
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -343,7 +346,19 @@ namespace AITech.DataAccess.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("FacebookUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("ImageUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("InstagramUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LinkedinUrl")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -351,10 +366,11 @@ namespace AITech.DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("SocialId")
-                        .HasColumnType("int");
+                    b.Property<string>("Position")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Title")
+                    b.Property<string>("TwitterUrl")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -362,8 +378,6 @@ namespace AITech.DataAccess.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("SocialId");
 
                     b.ToTable("Teams");
                 });
@@ -379,25 +393,9 @@ namespace AITech.DataAccess.Migrations
                     b.Navigation("Category");
                 });
 
-            modelBuilder.Entity("AITech.Entity.Entities.Team", b =>
-                {
-                    b.HasOne("AITech.Entities.Entities.Social", "Social")
-                        .WithMany("Teams")
-                        .HasForeignKey("SocialId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Social");
-                });
-
             modelBuilder.Entity("AITech.Entities.Entities.Category", b =>
                 {
                     b.Navigation("Projects");
-                });
-
-            modelBuilder.Entity("AITech.Entities.Entities.Social", b =>
-                {
-                    b.Navigation("Teams");
                 });
 #pragma warning restore 612, 618
         }

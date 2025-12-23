@@ -1,0 +1,58 @@
+﻿@model AITech.WebUI.DTOs.TeamDtos.CreateTeamDto
+@{
+    ViewData["Title"] = "Create Team";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="card card-outline card-success">
+    <div class="card-header">
+        <h3 class="card-title">
+            <i class="fas fa-user-plus mr-1"></i> Yeni Takım Üyesi Ekle
+        </h3>
+    </div>
+
+    <form method="post">
+        <div class="card-body">
+
+            <div class="form-group">
+                <label>İsim</label>
+                <input asp-for="Name"
+                       class="form-control"
+                       placeholder="Üye adı" />
+            </div>
+
+            <div class="form-group">
+                <label>Ünvan</label>
+                <input asp-for="Title"
+                       class="form-control"
+                       placeholder="Örn: CEO, Developer" />
+            </div>
+
+            <div class="form-group">
+                <label>Görsel URL</label>
+                <input asp-for="ImageUrl"
+                       class="form-control"
+                       placeholder="https://..." />
+            </div>
+
+            <div class="form-group">
+                <label>Sosyal Medya</label>
+                <select asp-for="SocialId"
+                        asp-items="ViewBag.Socials"
+                        class="form-control">
+                    <option value="">Sosyal Medya Seçiniz</option>
+                </select>
+            </div>
+
+        </div>
+
+        <div class="card-footer">
+            <button type="submit" class="btn btn-success">
+                <i class="fas fa-save"></i> Kaydet
+            </button>
+            <a href="/Admin/Team" class="btn btn-secondary">
+                <i class="fas fa-arrow-left"></i> İptal
+            </a>
+        </div>
+    </form>
+</div>

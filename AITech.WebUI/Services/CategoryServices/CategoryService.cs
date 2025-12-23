@@ -1,4 +1,6 @@
-﻿using AITech.WebUI.DTOs.CategoryDtos;
+﻿using AITech.WebUI.DTOs.BannerDtos;
+using AITech.WebUI.DTOs.CategoryDtos;
+using AITech.WebUI.Services.GenericServices;
 using Newtonsoft.Json;
 using System.Text;
 
@@ -63,5 +65,7 @@ namespace AITech.WebUI.Services.CategoryServices
             var content = new StringContent(json, Encoding.UTF8, "application/json");
             await _client.PutAsync("categories", content);
         }
+
+        
     }
 }

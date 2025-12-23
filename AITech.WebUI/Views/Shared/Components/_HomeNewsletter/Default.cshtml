@@ -8,30 +8,192 @@
 
             <div class="col-md-7 text-white">
                 <div class="btn btn-sm border rounded-pill text-white px-3 mb-3">
-                    Newsletter
+                    AI Assistant
                 </div>
 
                 <h1 class="text-white mb-4">
-                    Let's subscribe the newsletter
+                    Bir Soru Sorun, Hemen Cevaplayalım
                 </h1>
 
                 <div class="position-relative w-100 mt-3 mb-2">
-                    <input class="form-control border-0 rounded-pill w-100 ps-4 pe-5"
+                    <input id="questionInput"
+                           class="form-control border-0 rounded-pill w-100 ps-4 pe-5"
                            type="text"
-                           placeholder="Enter Your Email"
+                           placeholder="Sorunuzu yazın..."
+                           maxlength="500"
                            style="height: 48px;" />
 
                     <button type="button"
+                            id="askButton"
                             class="btn shadow-none position-absolute top-0 end-0 mt-1 me-2">
                         <i class="fa fa-paper-plane text-primary fs-4"></i>
                     </button>
                 </div>
 
+                <div id="loadingIndicator" style="display:none;" class="text-white-50 mb-2">
+                    <i class="fas fa-spinner fa-spin"></i> Cevap hazırlanıyor...
+                </div>
+
+                <div id="answerBox" style="display:none;" class="bg-white text-dark p-3 rounded mt-3">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div class="flex-grow-1">
+                            <strong class="text-primary">
+                                <i class="fas fa-robot"></i> AI Asistan:
+                            </strong>
+                            <p id="answerText" class="mb-0 mt-2"></p>
+                        </div>
+                        <button type="button"
+                                id="closeAnswer"
+                                class="btn-close"
+                                aria-label="Kapat"></button>
+                    </div>
+                </div>
+
+                <div id="errorBox" style="display:none;" class="bg-danger bg-opacity-75 text-white p-3 rounded mt-3">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div class="flex-grow-1">
+                            <strong><i class="fas fa-exclamation-triangle"></i> Hata:</strong>
+                            <p id="errorText" class="mb-0 mt-2"></p>
+                        </div>
+                        <button type="button"
+                                id="closeError"
+                                class="btn-close btn-close-white"
+                                aria-label="Kapat"></button>
+                    </div>
+                </div>
+
                 <small class="text-white-50">
-                    Diam sed sed dolor stet amet eirmod
+                    Yapay zeka destekli asistan ile sorularınızı yanıtlayın
                 </small>
             </div>
 
         </div>
     </div>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const questionInput = document.getElementById('questionInput');
+        const askButton = document.getElementById('askButton');
+        const loadingIndicator = document.getElementById('loadingIndicator');
+        const answerBox = document.getElementById('answerBox');
+        const answerText = document.getElementById('answerText');
+        const errorText = document.getElementById('errorText');
+        const closeAnswer = document.getElementById('closeAnswer');
+        const closeError = document.getElementById('closeError');
+
+        // Close buttons
+        closeAnswer.addEventListener('click', function() {
+            answerBox.style.display = 'none';
+        });
+
+        closeError.addEventListener('click', function() {
+            errorBox.style.display = 'none';
+        });
+
+        async function askQuestion() {
+            const question = questionInput.value.trim();
+
+            if (!question) {
+                showError('Lütfen bir soru yazın.');
+                return;
+            }
+
+            if (question.length > 500) {
+                showError('Soru çok uzun. Lütfen daha kısa bir soru yazın.');
+                return;
+            }
+
+            // Hide previous messages
+            answerBox.style.display = 'none';
+            errorBox.style.display = 'none';
+
+            // Show loading
+            loadingIndicator.style.display = 'block';
+            askButton.disabled = true;
+            questionInput.disabled = true;
+
+            try {
+                const response = await fetch('https://localhost:7149/api/AIAssistants/ask', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        question: question
+                    })
+                });
+
+                // Check if response is ok before parsing JSON
+                if (!response.ok) {
+                    let errorMessage = 'Bir hata oluştu';
+                    try {
+                        const errorData = await response.json();
+                        errorMessage = errorData.error || errorMessage;
+                    } catch (e) {
+                        // If JSON parsing fails, use status text
+                        errorMessage = `Hata: ${response.status} ${response.statusText}`;
+                    }
+                    throw new Error(errorMessage);
+                }
+
+                // Get response text first
+                const responseText = await response.text();
+                console.log('API Response:', responseText); // Debug için
+
+                // Check if response is empty
+                if (!responseText || responseText.trim() === '') {
+                    throw new Error('API boş yanıt döndü');
+                }
+
+                // Try to parse JSON
+                let data;
+                try {
+                    data = JSON.parse(responseText);
+                } catch (e) {
+                    console.error('JSON Parse Error:', e);
+                    console.error('Response Text:', responseText);
+                    throw new Error('API geçersiz yanıt döndü');
+                }
+
+                // Check if answer exists
+                if (!data.answer) {
+                    throw new Error('API cevap içermiyor');
+                }
+
+                // Display answer
+                answerText.textContent = data.answer;
+                answerBox.style.display = 'block';
+
+                // Clear input
+                questionInput.value = '';
+
+            } catch (error) {
+                console.error('Hata:', error);
+                showError(error.message || 'Üzgünüm, bir hata oluştu. Lütfen tekrar deneyin.');
+            } finally {
+                loadingIndicator.style.display = 'none';
+                askButton.disabled = false;
+                questionInput.disabled = false;
+                questionInput.focus();
+            }
+        }
+
+        function showError(message) {
+            errorText.textContent = message;
+            errorBox.style.display = 'block';
+            answerBox.style.display = 'none';
+        }
+
+        // Click event
+        askButton.addEventListener('click', askQuestion);
+
+        // Enter key event
+        questionInput.addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                askQuestion();
+            }
+        });
+    });
+</script>

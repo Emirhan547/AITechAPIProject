@@ -1,4 +1,7 @@
-﻿<div class="container-fluid bg-light py-5">
+﻿@using AITech.WebUI.DTOs.TeamDtos
+@model List<ResultTeamDto>
+
+<div class="container-fluid bg-light py-5">
     <div class="container py-5">
         <div class="row g-5 align-items-center">
 
@@ -14,53 +17,29 @@
 
             <div class="col-lg-7">
                 <div class="row g-4">
+                    @foreach (var member in Model)
+                    {
+                        <div class="col-md-6">
+                            <div class="team-item bg-white text-center rounded p-4 pt-0">
+                                <img class="img-fluid rounded-circle p-4"
+                                     src="@member.ImageUrl"
+                                     alt="@member.Name" />
+                                <h5 class="mb-0">@member.Name</h5>
+                                <small>@member.Title</small>
 
-                    <!-- TEAM MEMBER 1 -->
-                    <div class="col-md-6">
-                        <div class="team-item bg-white text-center rounded p-4 pt-0">
-                            <img class="img-fluid rounded-circle p-4"
-                                 src="~/img/team-1.jpg" />
-                            <h5 class="mb-0">Boris Johnson</h5>
-                            <small>Founder & CEO</small>
-                            <div class="d-flex justify-content-center mt-3">
-                                <a class="btn btn-square btn-primary m-1"><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-square btn-primary m-1"><i class="fab fa-twitter"></i></a>
-                                <a class="btn btn-square btn-primary m-1"><i class="fab fa-instagram"></i></a>
-                                <a class="btn btn-square btn-primary m-1"><i class="fab fa-linkedin-in"></i></a>
+                                @if (member.Social != null)
+                                {
+                                    <div class="d-flex justify-content-center mt-3">
+                                        <a class="btn btn-square btn-primary m-1"
+                                           href="@member.Social.Url"
+                                           target="_blank">
+                                            <i class="@member.Social.Icon"></i>
+                                        </a>
+                                    </div>
+                                }
                             </div>
                         </div>
-                    </div>
-
-                    <!-- TEAM MEMBER 2 -->
-                    <div class="col-md-6">
-                        <div class="team-item bg-white text-center rounded p-4 pt-0">
-                            <img class="img-fluid rounded-circle p-4"
-                                 src="~/img/team-2.jpg" />
-                            <h5 class="mb-0">Adam Crew</h5>
-                            <small>Executive Manager</small>
-                        </div>
-                    </div>
-
-                    <!-- TEAM MEMBER 3 -->
-                    <div class="col-md-6">
-                        <div class="team-item bg-white text-center rounded p-4 pt-0">
-                            <img class="img-fluid rounded-circle p-4"
-                                 src="~/img/team-3.jpg" />
-                            <h5 class="mb-0">Kate Winslet</h5>
-                            <small>Co Founder</small>
-                        </div>
-                    </div>
-
-                    <!-- TEAM MEMBER 4 -->
-                    <div class="col-md-6">
-                        <div class="team-item bg-white text-center rounded p-4 pt-0">
-                            <img class="img-fluid rounded-circle p-4"
-                                 src="~/img/team-4.jpg" />
-                            <h5 class="mb-0">Cody Gardner</h5>
-                            <small>Project Manager</small>
-                        </div>
-                    </div>
-
+                    }
                 </div>
             </div>
 

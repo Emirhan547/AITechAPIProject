@@ -37,14 +37,14 @@ namespace AITech.Business.Services.BannerServices
             return banners.Adapt<List<ResultBannerDto>>();
         }
 
-        public Task<ResultBannerDto> TGetByIdAsync(int id)
+        public async Task<ResultBannerDto> TGetByIdAsync(int id)
         {
-            var banner= _bannerRepository.GetByIdAsync(id);
+            var banner=await _bannerRepository.GetByIdAsync(id);
             if (banner is null)
             {
                 throw new Exception(" Banner Bulunamadı");
             }
-            return banner.Adapt<Task<ResultBannerDto>>();
+            return banner.Adapt<ResultBannerDto>();
         }
 
         public async Task TMakeActiveAsync(int id)
@@ -61,6 +61,10 @@ namespace AITech.Business.Services.BannerServices
         public async Task TMakePassiveAsync(int id)
         {
             var banner = await _bannerRepository.GetByIdAsync(id);
+            if (banner is null)
+            {
+                throw new Exception(" Banner Bulunamadı");
+            }
             await _bannerRepository.MakePassiveAsync(banner);
             await _unitOfWork.SaveChangesAsync();
         }
