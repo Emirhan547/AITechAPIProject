@@ -21,6 +21,10 @@ namespace AITech.WebUI.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateCategory(CreateCategoryDto categoryDto)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(categoryDto);
+            }
             await _categoryService.CreateAsync(categoryDto);
             return RedirectToAction("Index");
         }
@@ -32,6 +36,10 @@ namespace AITech.WebUI.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> UpdateCategory(UpdateCategoryDto categoryDto)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(categoryDto);
+            }
             await _categoryService.UpdateAsync(categoryDto);
             return RedirectToAction("Index");
         }

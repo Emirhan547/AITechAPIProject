@@ -21,6 +21,10 @@ namespace AITech.WebUI.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult>CreateAbout(CreateAboutDto about)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(about);
+            }
             await _aboutService.CreateAsync(about);
             return RedirectToAction("Index");
         }
@@ -32,6 +36,10 @@ namespace AITech.WebUI.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult>UpdateAbout(UpdateAboutDto updateAbout)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(updateAbout);
+            }
             await _aboutService.UpdateAsync(updateAbout);
             return RedirectToAction("Index");
         }

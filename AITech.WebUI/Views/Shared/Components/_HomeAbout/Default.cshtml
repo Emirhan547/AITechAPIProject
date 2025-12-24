@@ -1,32 +1,60 @@
 ﻿@using AITech.WebUI.DTOs.AboutDtos
 
+@model ResultAboutDto
 
-@model  ResultAboutDto
+@if (Model == null)
+{
+    return;
+}
 
 <div class="container-fluid py-5">
     <div class="container">
         <div class="row g-5 align-items-center">
-
-            <div class="col-lg-6">
-                <img class="img-fluid"
-                     src="@(Model?.ImageUrl )"
-                     alt="About">
+   
+            <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
+                <div class="about-img">
+                    <img class="img-fluid"
+                         src="@Model.ImageUrl"
+                         alt="About">
+                </div>
             </div>
 
-            <div class="col-lg-6">
+            
+            <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
                 <div class="btn btn-sm border rounded-pill text-primary px-3 mb-3">
-                    About Us
+                    Yapay Zeka & Dijital Dönüşüm
                 </div>
 
                 <h1 class="mb-4">
-                    @Model?.Title
+   
+                    @Model.Title
                 </h1>
 
                 <p class="mb-4">
-                    @Model?.Description
+
+                    @Model.Description
                 </p>
 
                
+                @await Component.InvokeAsync("_HomeAboutItem")
+
+                <div class="d-flex align-items-center mt-4">
+                    <a class="btn btn-primary rounded-pill px-4 me-3" href="#">
+                        Çözümlerimizi Keşfedin
+                    </a>
+                    <a class="btn btn-outline-primary btn-square me-3" href="#">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a class="btn btn-outline-primary btn-square me-3" href="#">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a class="btn btn-outline-primary btn-square me-3" href="#">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a class="btn btn-outline-primary btn-square" href="#">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                </div>
             </div>
 
         </div>

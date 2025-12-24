@@ -1,8 +1,6 @@
 ﻿using AITech.WebUI.DTOs.AboutItems;
 using AITech.WebUI.Services.AboutItemServices;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Build.Framework;
-using System.Threading.Tasks;
 
 namespace AITech.WebUI.Areas.Admin.Controllers
 {
@@ -21,8 +19,12 @@ namespace AITech.WebUI.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateAboutItem(CreateAboutItemDto aboutItemDto)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(aboutItemDto);
+            }
             await _aboutItem.CreateAsync(aboutItemDto);
-            return View(aboutItemDto);
+            return RedirectToAction("Index");
         }
         public async Task<IActionResult>UpdateAboutItem(int id)
         {
@@ -32,6 +34,10 @@ namespace AITech.WebUI.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult>UpdateAboutItem(UpdateAboutItemDto aboutItemDto)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(aboutItemDto);
+            }
             await _aboutItem.UpdateAsync(aboutItemDto);
             return RedirectToAction("Index");
         }

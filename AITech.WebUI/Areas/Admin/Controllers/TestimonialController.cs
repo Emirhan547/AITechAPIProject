@@ -20,6 +20,10 @@ namespace AITech.WebUI.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult>CreateTestimonial(CreateTestimonialDto createTestimonialDto)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(createTestimonialDto);
+            }
             await _testimonialService.CreateAsync(createTestimonialDto);
             return RedirectToAction("Index");
         }
@@ -31,6 +35,10 @@ namespace AITech.WebUI.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult>UpdateTestimonial(UpdateTestimonialDto updateTestimonialDto)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(updateTestimonialDto);
+            }
             await _testimonialService.UpdateAsync(updateTestimonialDto);
             return RedirectToAction("Index");
         }

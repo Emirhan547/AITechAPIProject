@@ -21,6 +21,10 @@ namespace AITech.WebUI.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateBanner(CreateBannerDto bannerDto)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(bannerDto);
+            }
             await _bannerService.CreateAsync(bannerDto);
             return RedirectToAction("Index");
         }
@@ -32,6 +36,10 @@ namespace AITech.WebUI.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> UpdateBanner(UpdateBannerDto bannerDto)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(bannerDto);
+            }
             await _bannerService.UpdateAsync(bannerDto);
             return RedirectToAction("Index");
         }

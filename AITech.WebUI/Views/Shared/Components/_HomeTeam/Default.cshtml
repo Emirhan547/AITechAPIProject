@@ -1,45 +1,124 @@
 ﻿@using AITech.WebUI.DTOs.TeamDtos
 @model List<ResultTeamDto>
 
+@if (Model == null || Model.Count == 0)
+{
+    return;
+}
+
+@{
+    var leftMembers = Model.Where((item, index) => index % 2 == 0).ToList();
+    var rightMembers = Model.Where((item, index) => index % 2 == 1).ToList();
+    var leftDelays = new[] { "0.1s", "0.5s", "0.9s" };
+    var rightDelays = new[] { "0.3s", "0.7s", "1.1s" };
+}
+
 <div class="container-fluid bg-light py-5">
     <div class="container py-5">
         <div class="row g-5 align-items-center">
 
-            <div class="col-lg-5">
+            <!-- LEFT CONTENT -->
+            <div class="col-lg-5 wow fadeIn" data-wow-delay="0.1s">
                 <div class="btn btn-sm border rounded-pill text-primary px-3 mb-3">
-                    Our Team
+                    Ekibimiz
                 </div>
-                <h1 class="mb-4">Meet Our Experienced Team Members</h1>
+                <h1 class="mb-4">
+                    Deneyimli Ekibimizle Tanışın
+                </h1>
                 <p class="mb-4">
-                    Tempor erat elitr rebum at clita. Diam dolor diam ipsum et tempor sit.
+                    Alanında uzman mühendislerimiz ve yapay zeka
+                    uzmanlarımızla işletmeler için yenilikçi çözümler
+                    geliştiriyoruz.
                 </p>
+                <a class="btn btn-primary rounded-pill px-4" href="#">
+                    Ekibimizi Keşfedin
+                </a>
             </div>
 
+            <!-- RIGHT CONTENT -->
             <div class="col-lg-7">
                 <div class="row g-4">
-                    @foreach (var member in Model)
-                    {
-                        <div class="col-md-6">
-                            <div class="team-item bg-white text-center rounded p-4 pt-0">
-                                <img class="img-fluid rounded-circle p-4"
-                                     src="@member.ImageUrl"
-                                     alt="@member.Name" />
-                                <h5 class="mb-0">@member.Name</h5>
-                                <small>@member.Title</small>
 
-                                @if (member.Social != null)
-                                {
-                                    <div class="d-flex justify-content-center mt-3">
-                                        <a class="btn btn-square btn-primary m-1"
-                                           href="@member.Social.Url"
-                                           target="_blank">
-                                            <i class="@member.Social.Icon"></i>
-                                        </a>
+                    <!-- LEFT COLUMN -->
+                    <div class="col-md-6">
+                        <div class="row g-4">
+                            @for (int i = 0; i < leftMembers.Count; i++)
+                            {
+                                var member = leftMembers[i];
+                                var delay = i < leftDelays.Length ? leftDelays[i] : "0.1s";
+                                <div class="col-12 wow fadeIn" data-wow-delay="@delay">
+                                    <div class="team-item bg-white text-center rounded p-4 pt-0">
+                                        <img class="team-avatar"
+                                             src="@member.ImageUrl"
+                                             alt="@member.Name" />
+
+                                        <h5 class="mb-0">@member.Name</h5>
+                                        <small>@member.Title</small>
+
+                                        @if (!string.IsNullOrWhiteSpace(member.Description))
+                                        {
+                                            <p class="text-muted small mt-2 mb-0">
+                                                @member.Description
+                                            </p>
+                                        }
+
+                                        @if (member.Social != null)
+                                        {
+                                            <div class="d-flex justify-content-center mt-3">
+                                                <a class="btn btn-square btn-primary m-1"
+                                                   href="@member.Social.Url"
+                                                   target="_blank"
+                                                   rel="noopener noreferrer">
+                                                    <i class="@member.Social.Icon"></i>
+                                                </a>
+                                            </div>
+                                        }
                                     </div>
-                                }
-                            </div>
+                                </div>
+                            }
                         </div>
-                    }
+                    </div>
+
+                    <!-- RIGHT COLUMN -->
+                    <div class="col-md-6 pt-md-4">
+                        <div class="row g-4">
+                            @for (int i = 0; i < rightMembers.Count; i++)
+                            {
+                                var member = rightMembers[i];
+                                var delay = i < rightDelays.Length ? rightDelays[i] : "0.3s";
+                                <div class="col-12 wow fadeIn" data-wow-delay="@delay">
+                                    <div class="team-item bg-white text-center rounded p-4 pt-0">
+                                        <img class="team-avatar"
+                                             src="@member.ImageUrl"
+                                             alt="@member.Name" />
+
+                                        <h5 class="mb-0">@member.Name</h5>
+                                        <small>@member.Title</small>
+
+                                        @if (!string.IsNullOrWhiteSpace(member.Description))
+                                        {
+                                            <p class="text-muted small mt-2 mb-0">
+                                                @member.Description
+                                            </p>
+                                        }
+
+                                        @if (member.Social != null)
+                                        {
+                                            <div class="d-flex justify-content-center mt-3">
+                                                <a class="btn btn-square btn-primary m-1"
+                                                   href="@member.Social.Url"
+                                                   target="_blank"
+                                                   rel="noopener noreferrer">
+                                                    <i class="@member.Social.Icon"></i>
+                                                </a>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+
                 </div>
             </div>
 

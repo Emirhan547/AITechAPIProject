@@ -20,6 +20,10 @@ namespace AITech.WebUI.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult>CreateFaq(CreateFAQDto createFAQDto)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(createFAQDto);
+            }
             await _fAQService.CreateAsync(createFAQDto);
             return RedirectToAction("Index");
         }
@@ -28,8 +32,13 @@ namespace AITech.WebUI.Areas.Admin.Controllers
             var faqs= await _fAQService.GetByIdAsync(id);
             return View(faqs);
         }
+        [HttpPost]
         public async Task<IActionResult>UpdateFaq(UpdateFAQDto updateFAQDto)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(updateFAQDto);
+            }
             await _fAQService.UpdateAsync(updateFAQDto);
             return RedirectToAction("Index");
         }

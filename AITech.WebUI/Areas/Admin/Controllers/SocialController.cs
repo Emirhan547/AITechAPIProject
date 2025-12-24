@@ -20,6 +20,10 @@ namespace AITech.WebUI.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateSocial(CreateSocialDto createSocial)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(createSocial);
+            }
             await _socialService.CreateAsync(createSocial);
             return RedirectToAction("Index");
         }
@@ -31,6 +35,10 @@ namespace AITech.WebUI.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> UpdateSocial(UpdateSocialDto updateSocial)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(updateSocial);
+            }
             await _socialService.UpdateAsync(updateSocial);
             return RedirectToAction("Index");
         }

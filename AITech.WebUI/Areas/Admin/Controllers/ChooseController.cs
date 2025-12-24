@@ -20,6 +20,10 @@ namespace AITech.WebUI.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult>CreateChoose(CreateChooseDto createChoose)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(createChoose);
+            }
             await _chooseService.CreateAsync(createChoose);
             return RedirectToAction("Index");
         }
@@ -31,6 +35,10 @@ namespace AITech.WebUI.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult>UpdateChoose(UpdateChooseDto updateChoose)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(updateChoose);
+            }
             await _chooseService.UpdateAsync(updateChoose);
             return RedirectToAction("Index");
         }

@@ -1,14 +1,40 @@
 ﻿@using AITech.WebUI.DTOs.AboutItems
 @model List<ResultAboutItemDto>
 
+@if (Model == null || Model.Count == 0)
+{
+    return;
+}
+
+@{
+    var leftCount = (Model.Count + 1) / 2;
+    var leftItems = Model.Take(leftCount).ToList();
+    var rightItems = Model.Skip(leftCount).ToList();
+}
+
 <div class="row g-3">
-    @foreach (var item in Model)
-    {
-        <div class="col-sm-6">
-            <h6 class="mb-0">
+    
+    <div class="col-sm-6">
+        @for (int i = 0; i < leftItems.Count; i++)
+        {
+            var item = leftItems[i];
+            var marginClass = i < leftItems.Count - 1 ? "mb-3" : "mb-0";
+            <h6 class="@marginClass">
                 <i class="fa fa-check text-primary me-2"></i>
                 @item.Title
             </h6>
-        </div>
+        }
+    </div>
+    <div class="col-sm-6">
+        @for (int i = 0; i < rightItems.Count; i++)
+        {
+            var item = rightItems[i];
+            var marginClass = i < rightItems.Count - 1 ? "mb-3" : "mb-0";
+            <h6 class="@marginClass">
+                <i class="fa fa-check text-primary me-2"></i>
+                @item.Title
+            </h6>
+
     }
+    </div>
 </div>

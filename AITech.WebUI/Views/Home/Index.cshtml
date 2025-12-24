@@ -1,38 +1,30 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_UILayout.cshtml";
 }
 
 
-    <!-- Hero Start -->
-    @await Component.InvokeAsync("_HomeHero")
-    <!-- Hero End -->
-    <!-- Full Screen Search Start -->
-    <!-- Full Screen Search End -->
-    <!-- About Start -->
-    @await Component.InvokeAsync("_HomeAbout")
+<!-- Hero Start -->
+@await Component.InvokeAsync("_HomeHero")
+<!-- Hero End -->
+@await Component.InvokeAsync("_HomeAbout")
 
 
-@await Component.InvokeAsync("_HomeAboutItem")
-    <!-- About End -->
-    <!-- Service Start -->
-    @await Component.InvokeAsync("_HomeService")
-    <!-- Service End -->
-    <!-- Feature Start -->
-    @await Component.InvokeAsync("_HomeFeature")
-    <!-- Feature End -->
-    <!-- Case Start -->
-    @await Component.InvokeAsync("_HomeCase")
-    <!-- Case End -->
-    <!-- FAQs Start -->
-    @await Component.InvokeAsync("_HomeFaq")
-    <!-- FAQs Start -->
-    <!-- Team Start -->
-    @await Component.InvokeAsync("_HomeTeam")
-    <!-- Team End -->
-    @await Component.InvokeAsync("_HomeTestimonial")
-    <!-- Testimonial End -->
-    <!-- Newsletter Start -->
-    @await Component.InvokeAsync("_HomeNewsletter")
-    <!-- Newsletter End -->
+@await Component.InvokeAsync("_HomeService")
+
+@await Component.InvokeAsync("_HomeChoose")
+<!-- Choose End -->
+<!-- Case Start -->
+@await Component.InvokeAsync("_HomeCase")
+<!-- Case End -->
+<!-- FAQs Start -->
+@await Component.InvokeAsync("_HomeFaq")
+<!-- FAQs Start -->
+<!-- Team Start -->
+@await Component.InvokeAsync("_HomeTeam")
+<!-- Team End -->
+@await Component.InvokeAsync("_HomeTestimonial")
+<!-- Testimonial End -->
+<!-- Newsletter Start -->
+@await Component.InvokeAsync("_HomeNewsletter")
+<!-- Newsletter End -->

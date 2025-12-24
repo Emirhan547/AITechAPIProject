@@ -20,6 +20,10 @@ namespace AITech.WebUI.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateFeature(CreateFeatureDto createFeatureDto)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(createFeatureDto);
+            }
             await _featureService.CreateAsync(createFeatureDto);
             return RedirectToAction("Index");
         }
@@ -31,6 +35,10 @@ namespace AITech.WebUI.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> UpdateFeature(UpdateFeatureDto updateFeatureDto)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(updateFeatureDto);
+            }
             await _featureService.UpdateAsync(updateFeatureDto);
             return RedirectToAction("Index");
         }

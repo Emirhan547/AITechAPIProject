@@ -50,6 +50,11 @@ namespace AITech.WebUI.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> UpdateProject(UpdateProjectDto updateProjectDto)
         {
+            if (!ModelState.IsValid)
+            {
+                await GetCategoriesAsync();
+                return View(updateProjectDto);
+            }
             await _projectService.UpdateAsync(updateProjectDto);
             return RedirectToAction("Index");
         }
