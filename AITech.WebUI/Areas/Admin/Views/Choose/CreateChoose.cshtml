@@ -1,12 +1,15 @@
-﻿@model AITech.WebUI.DTOs.ChooseDtos.CreateChooseDto
+﻿
+@model CreateChooseDto
 @{
     ViewData["Title"] = "Create Choose";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<div class="card">
+<div class="card card-outline card-success">
     <div class="card-header">
-        <h3 class="card-title">Why Choose Us – Yeni Kayıt</h3>
+        <h3 class="card-title">
+            <i class="fas fa-plus-circle mr-1"></i> Why Choose Us – Yeni Kayıt
+        </h3>
     </div>
 
     <form method="post">
@@ -47,8 +50,12 @@
         </div>
 
         <div class="card-footer">
-            <button type="submit" class="btn btn-success">Kaydet</button>
-            <a href="/Admin/Choose" class="btn btn-secondary">İptal</a>
+            <button type="submit" class="btn btn-success">
+                <i class="fas fa-save"></i> Kaydet
+            </button>
+            <a href="/Admin/Choose" class="btn btn-secondary">
+                <i class="fas fa-arrow-left"></i> İptal
+            </a>
         </div>
     </form>
 </div>

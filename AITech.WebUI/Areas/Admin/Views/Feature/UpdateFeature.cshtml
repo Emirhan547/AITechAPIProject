@@ -1,18 +1,20 @@
-﻿@model AITech.WebUI.DTOs.FeatureDtos.CreateFeatureDto
+﻿@model AITech.WebUI.DTOs.FeatureDtos.UpdateFeatureDto
 @{
-    ViewData["Title"] = "Create Feature";
+    ViewData["Title"] = "Update Feature";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<div class="card card-outline card-success">
+<div class="card card-outline card-info">
     <div class="card-header">
         <h3 class="card-title">
-            <i class="fas fa-plus-circle mr-1"></i> Yeni Özellik Ekle
+            <i class="fas fa-edit mr-1"></i> Özellik Güncelle
         </h3>
     </div>
 
     <form method="post">
         <div class="card-body">
+
+            <input type="hidden" asp-for="Id" />
 
             <div class="form-group">
                 <label>Başlık</label>
@@ -42,8 +44,8 @@
         </div>
 
         <div class="card-footer">
-            <button type="submit" class="btn btn-success">
-                <i class="fas fa-save"></i> Kaydet
+            <button type="submit" class="btn btn-info">
+                <i class="fas fa-sync-alt"></i> Güncelle
             </button>
             <a href="/Admin/Feature" class="btn btn-secondary">
                 <i class="fas fa-arrow-left"></i> İptal

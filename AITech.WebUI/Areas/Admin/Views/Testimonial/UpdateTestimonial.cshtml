@@ -4,9 +4,11 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<div class="card">
+<div class="card card-outline card-info">
     <div class="card-header">
-        <h3 class="card-title">Yorum Güncelle</h3>
+        <h3 class="card-title">
+            <i class="fas fa-edit mr-1"></i> Yorum Güncelle
+        </h3>
     </div>
 
     <form method="post">
@@ -42,8 +44,12 @@
         </div>
 
         <div class="card-footer">
-            <button type="submit" class="btn btn-info">Güncelle</button>
-            <a href="/Admin/Testimonial" class="btn btn-secondary">İptal</a>
+            <button type="submit" class="btn btn-info">
+                <i class="fas fa-sync-alt"></i> Güncelle
+            </button>
+            <a href="/Admin/Testimonial" class="btn btn-secondary">
+                <i class="fas fa-arrow-left"></i> İptal
+            </a>
         </div>
     </form>
 </div>

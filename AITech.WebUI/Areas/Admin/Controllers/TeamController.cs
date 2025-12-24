@@ -33,7 +33,7 @@ namespace AITech.WebUI.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateTeam(CreateTeamDto createTeamDto)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 await GetSocialsAsync();
                 return View(createTeamDto);
@@ -50,7 +50,7 @@ namespace AITech.WebUI.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> UpdateTeam(UpdateTeamDto updateTeamDto)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 await GetSocialsAsync();
                 return View(updateTeamDto);

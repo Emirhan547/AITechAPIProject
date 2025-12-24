@@ -25,19 +25,19 @@ namespace AITech.WebUI.Services.SocialServices
 
         public async Task<List<ResultSocialDto>> GetAllAsync()
         {
-            var features = await _client.GetFromJsonAsync<List<ResultSocialDto>>("features");
-             return features;
+            var socials = await _client.GetFromJsonAsync<List<ResultSocialDto>>("socials");
+             return socials;
         }
 
         public async Task<UpdateSocialDto> GetByIdAsync(int id)
         {
-            var features = await _client.GetFromJsonAsync<UpdateSocialDto>("features/" + id);
-            return features;
+            var socials = await _client.GetFromJsonAsync<UpdateSocialDto>("socials/" + id);
+            return socials;
         }
 
         public async Task UpdateAsync(UpdateSocialDto update)
         {
-            await _client.PutAsJsonAsync("features",update);
+            await _client.PutAsJsonAsync("socials", update);
         }
     }
 }
