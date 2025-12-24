@@ -14,7 +14,6 @@ namespace AITech.Entity.Entities
         public string Title { get; set; }
         public string ImageUrl { get; set; }
         public string Description { get; set; }
-        public int SocialId { get; set; }
-        public Social Social { get; set; }
+        public ICollection<Social> Socials { get; set; }
     }
 }

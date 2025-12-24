@@ -38,6 +38,14 @@
                        class="form-control"
                        placeholder="https://..." />
             </div>
+            <div class="form-group">
+                <label>Takım Üyesi</label>
+                <select asp-for="TeamId"
+                        asp-items="ViewBag.Teams"
+                        class="form-control">
+                    <option value="">Takım Üyesi Seçiniz</option>
+                </select>
+            </div>
 
         </div>
 

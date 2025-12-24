@@ -47,10 +47,15 @@
                             <td>@item.Title</td>
                             <td>@item.Description</td>
                             <td>
-                                @if (item.Social != null)
+                                @if (item.Socials != null && item.Socials.Any())
                                 {
-                                    <i class="@item.Social.Icon"></i>
-                                    <span>@item.Social.Name</span>
+                                    foreach (var social in item.Socials)
+                                    {
+                                        <span class="mr-2">
+                                            <i class="@social.Icon"></i>
+                                            <span>@social.Name</span>
+                                        </span>
+                                    }
                                 }
                             </td>
                             <td>

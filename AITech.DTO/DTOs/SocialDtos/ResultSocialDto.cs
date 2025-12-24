@@ -6,6 +6,6 @@ using System.Threading.Tasks;
 
 namespace AITech.DTO.DTOs.SocialDtos
 {
-    public record ResultSocialDto(int Id,string Name,string Url, string Icon, DateTime CreatedDate,DateTime UpdatedDate);
+    public record ResultSocialDto(int Id, string Name, string Url, string Icon, int TeamId, DateTime CreatedDate, DateTime UpdatedDate);
 
 }

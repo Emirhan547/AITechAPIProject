@@ -6,6 +6,6 @@ using System.Threading.Tasks;
 
 namespace AITech.DTO.DTOs.TeamDtos
 {
-    public record UpdateTeamDto(int Id,string? Name, string? Title,string? Description, string? ImageUrl, int SocialId);
+    public record UpdateTeamDto(int Id, string? Name, string? Title, string? ImageUrl);
 
 }

@@ -20,7 +20,7 @@ namespace AITech.DataAccess.Repositories.TeamRepositories
         {
             return await _context.Teams
                 .AsNoTracking()
-                .Include(x=>x.Social)
+                .Include(x => x.Socials)
                 .ToListAsync();
         }
     }

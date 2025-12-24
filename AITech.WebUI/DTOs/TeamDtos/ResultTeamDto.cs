@@ -9,7 +9,6 @@ namespace AITech.WebUI.DTOs.TeamDtos
         public string Title { get; set; }
         public string Description { get; set; }
         public string ImageUrl { get; set; }
-        public int SocialId { get; set; }
-        public ResultSocialDto Social { get; set; }
+        public List<ResultSocialDto> Socials { get; set; }
     }
 }
