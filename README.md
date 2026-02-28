@@ -1,8 +1,3 @@
-Tamamdır 👌
-Aşağıda **GİTHUB README için SON HAL** var.
-Kısa, teknik, süssüz — **direkt commit atmalık**.
-
----
 
 # AITech 🚀
 
